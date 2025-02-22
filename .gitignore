@@ -1,0 +1,116 @@
+# =========================
+# Unity Project Ignore List
+# =========================
+
+# Ignore .git metadata in the assets folder
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+
+# Ignore crash logs, generated files, and cache
+.globlals/
+.DS_Store
+*.pidb
+*.svd
+*.pdb
+*.aps
+*.ncb
+*.suo
+*.sln.docstates
+*.userprefs
+*.tmpproj
+*.csproj.user
+*.unitypackage
+*.vsconfig
+*.rider.user
+*.code-workspace
+*.log
+*.bak
+*.swp
+*.pid
+*.tmp
+
+# Ignore Visual Studio cache and project settings
+.vscode/
+.vs/
+.idea/
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+*.sln.cache
+
+# Ignore Play mode test results
+Assets/Scenes/Tests/Results/
+
+# Ignore Unity generated files
+*.unityproj
+*.uxml
+*.guid
+
+# ==========================
+# ASP.NET Game Server Ignore
+# ==========================
+
+# Build results
+bin/
+obj/
+publish/
+out/
+
+# User-specific files
+*.rsuser
+*.user
+*.suo
+*.ntvs*
+*.sln.cache
+*.log
+*.userprefs
+*.swp
+
+# ASP.NET dependencies
+node_modules/
+bower_components/
+
+# ASP.NET specific logs and settings
+logs/
+*.log
+*.nlog
+*.etl
+*.pdb
+*.mdb
+*.db-journal
+
+# Ignore compiled DLLs and executables
+*.dll
+*.exe
+*.so
+*.dylib
+
+# Entity Framework generated files
+Migrations/
+
+# Rider/Resharper settings
+.idea/
+*.dotSettings*
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore configuration for sensitive data
+appsettings.*.json
+appsettings.Development.json
+secrets.json
