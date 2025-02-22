@@ -50,17 +50,23 @@ builder.Services.AddSwaggerGen(c =>
 // Add services to the container.
 builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
+
+var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+var logger = loggerFactory.CreateLogger<Program>();
+
 var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-Console.WriteLine($"Azure Env Var Connection String: {envConnectionString}");
+logger.LogInformation($"Azure Env Var Connection String: {envConnectionString}");
 
 var connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-Console.WriteLine($"Azure SQL Connection String: {connectionString}");
+logger.LogInformation($"Azure SQL Connection String: {connectionString}");
 
 var configConnectionString = builder.Configuration.GetConnectionString("Database");
-Console.WriteLine($"Config File Connection String: {configConnectionString}");
+logger.LogInformation($"Config File Connection String: {configConnectionString}");
 
 var finalConnectionString = envConnectionString ?? configConnectionString;
-Console.WriteLine($"Final Connection String Used: {finalConnectionString}");
+logger.LogInformation($"Final Connection String Used: {finalConnectionString}");
+
+
 
 
 
