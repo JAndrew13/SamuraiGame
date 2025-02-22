@@ -30,7 +30,7 @@ public class AuthenticationController : ControllerBase
     /// <summary>
     /// Logs in an existing user.
     /// </summary>
-    [HttpGet("login")]
+    [HttpPost("login")]
     public IActionResult Login(AuthenticationRequest request)
     {
         var (success, content) = _authService.Login(request.Username, request.Password);

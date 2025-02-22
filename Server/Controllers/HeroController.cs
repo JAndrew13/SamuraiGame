@@ -35,7 +35,7 @@ public class HeroController : ControllerBase
     [HttpPost("{id}")]
     public IActionResult Edit([FromRoute] int id, [FromBody] CreateHeroRequest request)
     {
-        var heroIdsAvailible = JsonConvert.DeserializeObject<List<int>>(User.FindFirst("heroes").Value);
+        var heroIdsAvailible = JsonConvert.DeserializeObject<List<int>>(User.FindFirst("heroes").Value); // TODO: Fix this!
         if (!heroIdsAvailible.Contains(id)) return Unauthorized();
 
         var hero = _context.Heroes.First(h => h.Id == id);
