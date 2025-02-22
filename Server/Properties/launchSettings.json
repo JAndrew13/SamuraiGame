@@ -12,11 +12,10 @@
     "Server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger", // Open Swagger by default
-      "applicationUrl": "https://localhost:7295;http://localhost:5052",
+      "launchBrowser": false, // Disable for Azure
+      "applicationUrl": "http://0.0.0.0:8080", // Listen on all IPs for Azure
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
     "IIS Express": {
