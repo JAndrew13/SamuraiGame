@@ -53,11 +53,15 @@ builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configu
 var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 Console.WriteLine($"Azure Env Var Connection String: {envConnectionString}");
 
+var connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
+Console.WriteLine($"Azure SQL Connection String: {connectionString}");
+
 var configConnectionString = builder.Configuration.GetConnectionString("Database");
 Console.WriteLine($"Config File Connection String: {configConnectionString}");
 
 var finalConnectionString = envConnectionString ?? configConnectionString;
 Console.WriteLine($"Final Connection String Used: {finalConnectionString}");
+
 
 
 builder.Services
