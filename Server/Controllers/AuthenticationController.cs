@@ -38,4 +38,13 @@ public class AuthenticationController : ControllerBase
 
         return Ok(new AuthenticationResponse() { Token = content });
     }
+
+    /// <summary>
+    /// Logs in an existing user.
+    /// </summary>
+    [HttpGet("ping")]
+    public IActionResult Ping()
+    {
+        return Ok("Authenication Server is OK");
+    }
 }
