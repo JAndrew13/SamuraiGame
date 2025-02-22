@@ -49,8 +49,17 @@ builder.Services.AddSwaggerGen(c =>
 
 // Add services to the container.
 builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
-var connectionString = builder.Configuration.GetConnectionString("Database");
-Console.WriteLine($"DB Connection String: {connectionString}");
+
+var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+Console.WriteLine($"Azure Env Var Connection String: {envConnectionString}");
+
+var configConnectionString = builder.Configuration.GetConnectionString("Database");
+Console.WriteLine($"Config File Connection String: {configConnectionString}");
+
+var finalConnectionString = envConnectionString ?? configConnectionString;
+Console.WriteLine($"Final Connection String Used: {finalConnectionString}");
+
+
 builder.Services
     .AddControllers()
     .AddNewtonsoftJson(o => {
