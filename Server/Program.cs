@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Server;
@@ -48,6 +49,8 @@ builder.Services.AddSwaggerGen(c =>
 
 // Add services to the container.
 builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+var connectionString = builder.Configuration.GetConnectionString("Database");
+Console.WriteLine($"DB Connection String: {connectionString}");
 builder.Services
     .AddControllers()
     .AddNewtonsoftJson(o => {
