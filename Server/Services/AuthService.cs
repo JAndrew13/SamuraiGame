@@ -114,7 +114,9 @@ public class AuthService : IAuthService
         }
         catch (Exception e)
         {
-            throw new Exception("Database is not connected: " + e.Message);
+            // get the current connection string
+            var connectioString = Environment.GetEnvironmentVariable("Database");
+            throw new Exception("Database is not connected: " + e.Message + "ConnString: " + connectioString);
         }
     }
 }
