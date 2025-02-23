@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/game-repo/game-server', '.' ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/game-repo/game-server' ]
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'compute', 'instances', 'update-container', 'game-server', '--zone=us-west1', '--container-image', 'us-central1-docker.pkg.dev/$PROJECT_ID/game-repo/game-server' ]
