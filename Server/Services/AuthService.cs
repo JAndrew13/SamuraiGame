@@ -17,6 +17,8 @@ public interface IAuthService
 {
     (bool success, string content) Register(string username, string password);
     (bool success, string token) Login(string username, string password);
+
+    void PingDb();
 }
 
 public class AuthService : IAuthService 
@@ -99,6 +101,21 @@ public class AuthService : IAuthService
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+
+    // Create a simple funtion that pings the database to see if the connection string is setup correctly and the sql server is running.
+    // If an error is thrown, return it to the client.
+
+    public void PingDb()
+    {
+        try
+        {
+            _context.Database.ExecuteSqlRaw("SELECT 1");
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Database is not connected: " + e.Message);
+        }
     }
 }
 

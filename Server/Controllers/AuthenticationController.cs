@@ -42,9 +42,24 @@ public class AuthenticationController : ControllerBase
     /// <summary>
     /// Logs in an existing user.
     /// </summary>
-    [HttpGet("ping")]
+    [HttpGet("Ping Server")]
     public IActionResult Ping()
     {
         return Ok("Authenication Server is OK");
+    }
+
+    [HttpGet("ping Database")]
+    public IActionResult PingDb()
+    {
+        // use the _authService.PingDb() method to catch any exceptions and return the appropriate response
+        try
+        {
+            _authService.PingDb();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        return Ok("Database Connection is OK.");
     }
 }
