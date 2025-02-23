@@ -10,6 +10,7 @@ using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenAnyIP(8080);
@@ -53,26 +54,6 @@ builder.Services.AddSwaggerGen(c =>
 
 // Add services to the container.
 builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
-
-
-var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-var logger = loggerFactory.CreateLogger<Program>();
-
-var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-logger.LogInformation($"Azure Env Var Connection String: {envConnectionString}");
-
-var connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-logger.LogInformation($"Azure SQL Connection String: {connectionString}");
-
-var configConnectionString = builder.Configuration.GetConnectionString("Database");
-logger.LogInformation($"Config File Connection String: {configConnectionString}");
-
-var finalConnectionString = envConnectionString ?? configConnectionString;
-logger.LogInformation($"Final Connection String Used: {finalConnectionString}");
-
-
-
-
 
 builder.Services
     .AddControllers()
