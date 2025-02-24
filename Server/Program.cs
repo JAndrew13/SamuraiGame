@@ -18,24 +18,19 @@ builder.Configuration
 
 // Load environment variable for BearerKey (overrides appsettings.json if set)
 var bearerKey = builder.Configuration["BEARER_KEY"];
-if (!string.IsNullOrEmpty(bearerKey))
-{
-    Console.WriteLine("Using BEARER_KEY from environment variables.");
-}
-else
-{
-    Console.WriteLine("Using BearerKey from appsettings.json (BEARER_KEY not set).");
-}
+var connectionString = builder.Configuration["AZURE_SQL_CONNECTIONSTRING"]; // Load from Azure
+
 
 // Load settings from appsettings.json
 var settings = new Settings();
 builder.Configuration.Bind("Settings", settings);
 
 // Override settings.BearerKey with the Azure environment variable if available
-if (!string.IsNullOrEmpty(bearerKey))
-{
-    settings.BearerKey = bearerKey;
-}
+if (!string.IsNullOrEmpty(bearerKey)) settings.BearerKey = bearerKey;
+if (string.IsNullOrEmpty(connectionString)) connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(connectionString));
+
 
 builder.Services.AddSingleton(settings);
 
@@ -72,7 +67,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Add services to the container.
-builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services
     .AddControllers()
