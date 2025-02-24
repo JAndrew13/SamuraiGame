@@ -47,7 +47,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Add services to the container.
-builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+builder.Services.AddDbContext<GameDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services
     .AddControllers()
