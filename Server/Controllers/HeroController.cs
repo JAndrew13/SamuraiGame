@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Server.Services;
-using SharedLibrary;
+using SharedLibrary.Models;
 using SharedLibrary.Requests;
 
 namespace Server.Controllers;
